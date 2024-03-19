@@ -1,5 +1,4 @@
 /* package CALab;
-//test
 import java.util.*;
 import java.io.*;
 import mvc.*;
