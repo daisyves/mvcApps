@@ -1,5 +1,5 @@
-/* package CALab;
-//test
+/*
+package CALab;
 import java.util.*;
 import java.io.*;
 import mvc.*;
@@ -12,16 +12,23 @@ abstract class Cell extends Publisher implements Serializable {
     protected Cell partner = null;
 
 
+
     // choose a random neighbor as a partner
     public void choosePartner() {
         if (partner == null && neighbors != null) {
-			/*
-			Set partner to null
-			Convert neighbors set to a local array
-			Starting at a random position in the array search for a neighbor without a partner
-			Make the first such neighbor (if any) the partner and set its partner field to this
-			*/
- /*       }
+			Cell[] partnerOptions = neighbors.toArray(new Cell[0]);
+            Random random = new Random();
+            int start = random.nextInt(partnerOptions.length);
+            for (int i = 0; i < partnerOptions.length; i++) {
+                int index = (start + i) % partnerOptions.length;
+                Cell potentialPartner = partnerOptions[index];
+                if (partnerOptions[index].partner != null) {
+                    partner = potentialPartner;
+                    partnerOptions[index].partner = this;
+                    break;
+                }
+            }
+        }
 
     }
 
@@ -45,4 +52,4 @@ abstract class Cell extends Publisher implements Serializable {
     // set status to a random or initial value
     public abstract void reset(boolean randomly);
 
-} */
+}*/

@@ -1,5 +1,4 @@
 package stopLight;
-
 import mvc.*;
 
 public class ChangeCommand extends Command {
