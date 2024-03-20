@@ -4,8 +4,9 @@ import java.awt.*;
 import java.util.*;
 import java.io.*;
 import mvc.*;
+import java.util.ArrayList;
 
-/*
+
 public abstract class Grid extends Model {
     static private int time = 0;
     protected int dim = 20;
@@ -25,18 +26,36 @@ public abstract class Grid extends Model {
     public Grid() { this(20); }
 
     protected void populate() {
-        // 1. use makeCell to fill in cells
-        // 2. use getNeighbors to set the neighbors field of each cell
+        for(int i = 0; i < getDim(); i++) {
+            for (int j = 0; i < getDim(); j++) {
+                // 1. use makeCell to fill in cells
+                this.makeCell(Math.random() < 0.5);
+                // 2. use getNeighbors to set the neighbors field of each cell
+                this.getNeighbors(getCell(i,j), 1); // radius can change depending on project?
+            }
+        }
+        changed();
     }
 
     // called when Populate button is clicked
     public void repopulate(boolean randomly) {
         if (randomly) {
             // randomly set the status of each cell
+            for(int i = 0; i < dim; i++) {
+                for (int j = 0; i < dim; j++) {
+                    cells[i][j].reset(randomly); // unsure about this
+                }
+            }
         } else {
             // set the status of each cell to 0 (dead)
+            for(int i = 0; i < dim; i++) {
+                for (int j = 0; i < dim; j++) {
+                    getCell(i,j).reset(true);
+                }
+            }
         }
         // notify subscribers
+        changed();
     }
 
 
@@ -47,7 +66,23 @@ public abstract class Grid extends Model {
         Tricky part: cells in row/col 0 or dim - 1.
         The asker is not a neighbor of itself.
         */
- /*       return null;
+        int dim = getDim();
+
+        Set<Cell> neighbors = new HashSet<Cell>();
+        int[][] neighborMatrix = new int[][]{
+                {-radius, -radius}, {-radius, 0}, {-radius, radius},
+                {0, -radius}, {0, radius},
+                {radius, -radius}, {radius, 0}, {radius, radius}
+        };
+
+        for(int[] nm : neighborMatrix){
+            int rows = (asker.row + nm[0] + dim) % dim;
+            int cols = (asker.col + nm[1] + dim) % dim;
+            neighbors.add(cells[rows][cols]);
+        }
+
+
+        return neighbors;
     }
 
     // overide these
@@ -58,14 +93,27 @@ public abstract class Grid extends Model {
 
     public void observe() {
         // call each cell's observe method and notify subscribers
+        for(int i = 0; i < dim; i++) {
+            for (int j = 0; i < dim; j++) {
+                cells[i][j].observe();
+            }
+        }
     }
 
     public void interact() {
-        // ???
+        for(int i = 0; i < dim; i++) {
+            for (int j = 0; i < dim; j++) {
+                cells[i][j].interact();
+            }
+        }
     }
 
     public void update() {
-        // ???
+        for(int i = 0; i < dim; i++) {
+            for (int j = 0; i < dim; j++) {
+                cells[i][j].update();
+            }
+        }
     }
 
     public void updateLoop(int cycles) {
@@ -79,5 +127,3 @@ public abstract class Grid extends Model {
         }
     }
 }
-
-*/
