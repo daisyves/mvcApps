@@ -1,17 +1,13 @@
-/*
 package CALab;
-import mvc.Command;
-import mvc.Model;
+import mvc.*;
 
 public class ClearCommand extends Command {
     public ClearCommand(Model model) {
         super(model);
     }
 
-    public void execute(Model model) {
-        Grid g = (grid)model;
-        g.repopulate(false);
+    public void execute() {
+        Grid grid = (Grid)model;
+        grid.repopulate(false);
     }
 }
-
-*/

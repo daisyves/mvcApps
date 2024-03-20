@@ -1,11 +1,11 @@
-
-/*
 package CALab;
+
 import java.util.*;
+import java.awt.Color;
 import java.io.*;
 import mvc.*;
 
-abstract class Cell extends Publisher implements Serializable {
+public abstract class Cell extends Publisher implements Serializable {
 
     protected int row = 0, col = 0;
     protected Set<Cell> neighbors = new HashSet<Cell>();
@@ -17,7 +17,7 @@ abstract class Cell extends Publisher implements Serializable {
     // choose a random neighbor as a partner
     public void choosePartner() {
         if (partner == null && neighbors != null) {
-			Cell[] partnerOptions = neighbors.toArray(new Cell[0]);
+            Cell[] partnerOptions = neighbors.toArray(new Cell[0]);
             Random random = new Random();
             int start = random.nextInt(partnerOptions.length);
             for (int i = 0; i < partnerOptions.length; i++) {
@@ -43,6 +43,9 @@ abstract class Cell extends Publisher implements Serializable {
     }
 
     // observer neighbors' states
+    public abstract Color getColor();
+    public abstract int getStatus();
+    public abstract int getAmbience();
     public abstract void observe();
     // interact with a random neighbor
     public abstract void interact();
@@ -53,4 +56,4 @@ abstract class Cell extends Publisher implements Serializable {
     // set status to a random or initial value
     public abstract void reset(boolean randomly);
 
-}*/
+}

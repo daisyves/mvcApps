@@ -1,22 +1,19 @@
-/*
 package CALab;
-import mvc.Model;
-import mvc.Command;
 
+import mvc.*;
 public class RunCommand extends Command {
-    int cycles;
-
-    public void runCommand(int cycles) {
-        this.cycles = cycles;
-    }
-
+    public String runNum;
     public RunCommand(Model model) {
         super(model);
+        runNum = null;
     }
 
-    public void execute(Model model) {
-        Grid g = (grid) model;
-        g.updateLoop(cycles);
+    public void execute() {
+        Grid grid = (Grid)model;
+        if (runNum.equals("RUN1")) {
+            grid.updateLoop(1);
+        } else if (runNum.equals("RUN50")) {
+            grid.updateLoop(50);
+        }
     }
 }
-*/

@@ -1,35 +1,33 @@
 package CALab;
-import java.awt.*;
-import javax.swing.*;
+
 import mvc.*;
-import stopLight.StoplightFactory;
-import stopLight.StoplightPanel;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class GridPanel extends AppPanel {
-    private JButton run1;
-    private JButton run50;
-    private JButton populate;
-    private JButton clear;
-
+    private JButton RUN1;
+    private JButton RUN50;
+    private JButton POPULATE;
+    private JButton CLEAR;
     public GridPanel(AppFactory factory) {
         super(factory);
-        run1 = new JButton("RUN1");
-        run1.addActionListener(this);
-        controlPanel.add(run1);
+        RUN1 = new JButton("RUN1");
+        RUN50 = new JButton("RUN50");
+        POPULATE = new JButton("POPULATE");
+        CLEAR = new JButton("CLEAR");
 
-        run50 = new JButton("RUN50");
-        run50.addActionListener(this);
-        controlPanel.add(run50);
+        JButton[] buttons = {RUN1, RUN50, POPULATE, CLEAR};
+        controlPanel.setLayout(new GridLayout(2, 2));
 
-        populate = new JButton("POPULATE");
-        run1.addActionListener(this);
-        controlPanel.add(populate);
-
-        clear = new JButton("CLEAR");
-        run1.addActionListener(this);
-        controlPanel.add(clear);
+        JPanel p;
+        for (JButton b : buttons) {
+            b.addActionListener(this);
+            p = new JPanel();
+            p.add(b);
+            controlPanel.add(p);
+        }
     }
-    public static void main(String[] args) {
 
-    }
+    public static void main(String[] args) {}
 }
