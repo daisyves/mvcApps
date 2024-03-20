@@ -26,7 +26,6 @@ public abstract class GridFactory implements AppFactory {
     public String[] getEditCommands() {
         return new String[]{"RUN1", "RUN50", "POPULATE", "CLEAR"};
     }
-
     @Override
     public Command makeEditCommand(Model model, String type, Object source) {
         switch (type) {
