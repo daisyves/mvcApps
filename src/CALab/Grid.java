@@ -43,14 +43,14 @@ public abstract class Grid extends Model {
             // randomly set the status of each cell
             for(int i = 0; i < dim; i++) {
                 for (int j = 0; i < dim; j++) {
-                    cells[i][j].reset(randomly); // unsure about this
+                    cells[i][j].reset(randomly); // unsure about this part
                 }
             }
         } else {
             // set the status of each cell to 0 (dead)
             for(int i = 0; i < dim; i++) {
                 for (int j = 0; i < dim; j++) {
-                    getCell(i,j).reset(true);
+                    getCell(i,j).reset(true); // and this
                 }
             }
         }

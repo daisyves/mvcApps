@@ -35,7 +35,7 @@ public class GridView  extends View {
         // i = rows, j = columns
         for(int i = 0; i < dim; i++){
             for(int j = 0; j < dim; j++) {
-                //different from given code, was giving error due to type so I changed it
+                //different from given code, was giving error due to type, so I changed it
                 CellView cell = new CellView(g.getCell(i,j));
                 cellViews[i][j] = cell;
 
