@@ -50,7 +50,7 @@ public class GridView  extends View {
 
         for(int i = 0; i < dim; i++){
             for(int j = 0; j < dim; j++) {
-                //cellViews[i][j].update()?; unsure
+                cellViews[i][j].update(); // unsure what to do with the parameters msg, oldSate, newState
             }
         }
 
