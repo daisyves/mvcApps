@@ -80,35 +80,35 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener  {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        String cmmd = ae.getActionCommand();
+        try {
+            String cmmd = ae.getActionCommand();
 
-        if (cmmd.equals("Save")) {
-            Utilities.save(model, false);
-        } else if (cmmd.equals("SaveAs")) {
-            Utilities.save(model, true);
-        } else if (cmmd.equals("Open")) {
-            Model newModel = Utilities.open(model);
-            if (newModel != null) setModel(newModel);
-        } else if (cmmd.equals("New")) {
-            Utilities.saveChanges(model);
-            setModel(factory.makeModel());
-            model.setUnsavedChanges(false);
-        } else if (cmmd.equals("Quit")) {
-            Utilities.saveChanges(model);
-            System.exit(1);
-        } else if (cmmd.equals("About")) {
-            Utilities.inform(factory.about());
-        } else if (cmmd.equals("Help")) {
-            Utilities.inform(factory.getHelp());
-        } else {
-            Command command = factory.makeEditCommand(model, cmmd, ae.getSource());
-            try {
-                command.execute();
-            } catch (Exception e) {
-                handleException(e);
+            if (cmmd.equals("Save")) {
+                Utilities.save(model, false);
+            } else if (cmmd.equals("SaveAs")) {
+                Utilities.save(model, true);
+            } else if (cmmd.equals("Open")) {
+                Model newModel = Utilities.open(model);
+                if (newModel != null) setModel(newModel);
+            } else if (cmmd.equals("New")) {
+                Utilities.saveChanges(model);
+                setModel(factory.makeModel());
+                model.setUnsavedChanges(false);
+            } else if (cmmd.equals("Quit")) {
+                Utilities.saveChanges(model);
+                System.exit(0);
+            } else if (cmmd.equals("About")) {
+                Utilities.inform(factory.about());
+            } else if (cmmd.equals("Help")) {
+                Utilities.inform(factory.getHelp());
+            } else {
+                this.factory.makeEditCommand(model, cmmd, this).execute();
             }
+        } catch (Exception e) {
+            handleException(e);
         }
     }
+
 
     protected void handleException(Exception e) {
         Utilities.error(e);
